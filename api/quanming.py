@@ -2,6 +2,7 @@ import requests
 import json
 import random
 from api import anytv_info
+from api import proxy_list
 
 
 def get_data(url):
@@ -69,6 +70,6 @@ def get_all_quanming_data(cate):
 
 
 #
-# if __name__ == "__main__":
-#     get_all_quanming_data(quanming_cate)
+if __name__ == "__main__":
+    get_all_quanming_data(quanming_cate)
 
