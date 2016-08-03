@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>AnyTv</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-fixed-top.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta charset=utf-8"utf-8">
+    <link rel="stylesheet" type="text/css"
+          href="http://dlstatic.cdn.zhanqi.tv/assets/web/static/c/??reset.css,base.css,common.css,yanhua-show.css,skin.css?v=20160801.0101">
+
+    <link rel="stylesheet" type="text/css"
+          href="http://dlstatic.cdn.zhanqi.tv/assets/web/static/c/font-icons.css?v=20160801.01">
+    <script>
+        window.ie678 = !-[1,];
+        var isWin8 = navigator.userAgent.indexOf("Windows NT 6.2") > -1 || navigator.userAgent.indexOf("Windows 8") > -1;
+        window.oPageConfig = {
+            oUrl: {
+                sUrlHost: 'http://www.zhanqi.tv/'
+                , sUrlBase: 'http://dlstatic.cdn.zhanqi.tv/assets/web/static/'
+                , sUrlFlash: 'http://dlstatic.cdn.zhanqi.tv/assets/swf/'
+                , sUrlHistory: '/api/user/record.watch_list'
+                , sUrlHistoryClear: '/api/user/record.watch_clean'
+                , sUrlFollowList: '/api/user/follow.list'
+                , sUrlFollow: '/api/user/follow${type}'///toggle
+                , sUrlLogout: '/api/auth/user.logout'
+                , sUrlValidate: '/api/public/validate.${type}'
+                , sUrlLoginJump: '/common/login.html?redirect='
+                , sGetLeftMenuInfoUrl: '/u/follow_watch/get'
+                , sSuggestUrl: '/user/suggest'
+                , sGetLoginInfoUrl: '/api/user/user.info'
+                , sWatchRecord: '/api/user/record.watch?type=${type}&id=${id}'
+                , sAnchorApplyUrl: '/anchor/apply/step1'
+                , sLiveStatusUrl: '/api/public/room.liveparam?room_id=${roomId}'
+                , sGetRichUrl: '/api/user/rich.get'
+                , sUserInfoUrl: '/user/info'
+                , sTaskReceiveUrl: '/api/actives/task/info.receive'
+                , sShareReturnUrl: '/api/actives/chance/send.share'
+                , sSgamerActiveUrl: '/api/actives/crazydec/sgamer.send'
+                , sGetCaptchaUrl: '/api/auth/user.captcha'
+                , sGetWebGameUrl: 'http://www.2133.com/index.php?r=zqAjaxdata/getGameData'
+                , sAdminPanelListUrl: '/api/user/block.list/${roomId}/${nums}-${page}.json'
+                , sGetTokenUrl: 'http://www.zhanqi.tv/api/open/cas.token?appid=${appid}'
+                , sGetWebGameTaskCntUrl: 'http://www.2133.com/index.php?r=zqAjaxTask/getToEndNum'
+                , sAppDownUrl: '/common/apps.html'
+                , sRegistPhoneCode: '/api/auth/user.send_code'
+                , sGlobalGetPhoneCodeUrl: '/api/user/user.mobile_voice'
+                , sPhoneCheckSubmitUrl: '/api/user/user.mobile_voice'
+                , sKeepCardBuyUrl: '/api/actives/ticket/index.keepCard'
+                , sSiteInvisibleStatusUrl: '/api/user/user.online'
+                , sLoadVdescUrl: '/api/public/user.vinfo?uid=${uid}'
+                , sLoadMedalUrl: 'http://dlpic.cdn.zhanqi.tv/uploads/active/am.json'
+                , sLoadRecommendRoomsUrl: '/recommend/rooms/${nums}-${uid}-${positionTag}-${excludeRoomId}.json'
+                , sQnTongjiUrl: '/api/public/recommend.click'
+                , sLoadRecommendRoomsCountUrl: '/api/public/recommend.show'
+                , sSendAdminNoticeUrl: '/api/user/superadmincms.gagNotify'
+            }
+            ,
+            oLoginInfo: null
+            ,
+            oFlash: {
+                url: 'http://dlstatic.cdn.zhanqi.tv/assets/swf/shell.swf'
+                , installUrl: 'http://dlstatic.cdn.zhanqi.tv/assets/swf/chunk/v2/expressInstall.swf'
+                , placeholder: 'yp-flash-placeholder'
+                , vars: {}
+                , params: {
+                    menu: 'false'
+                    , scale: 'noScale'
+                    , allowFullscreen: 'true'
+                    , allowScriptAccess: 'always'
+                    , allowFullScreenInteractive: 'true'
+                    , wmode: 'transparent'
+                }
+                , attr: {
+                    id: 'BFPlayerID'
+                }
+                , websocket: {
+                    ws: 'url'
+                }
+            }
+            ,
+            oOtherLogin: {
+                "weibo": "https:\/\/api.weibo.com\/oauth2\/authorize?client_id=273802257&redirect_uri=http%3A%2F%2Fwww.feihuozhibo.com%2Fapi%2Fconnect%2Fweibo&response_type=code&redirect=",
+                "qq": "https:\/\/graph.qq.com\/oauth2.0\/authorize?response_type=code&client_id=101049628&redirect_uri=http%3A%2F%2Fwww.zhanqi.tv%2Fapi%2Fconnect%2Fqq&state=&scope=&redirect=",
+                "douban": "#",
+                "renren": "#"
+            }
+        };
+        window.oYpConfig = {
+            baseUrl: 'http://dlstatic.cdn.zhanqi.tv/assets/web/static/'
+            , ver: '20160801.01'
+            , flashVer: '20160726.02'
+        };
+    </script>
+    <script src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/yp/lib/require-jquery-min.js?v=20160801.01"></script>
+    <script data-main-yp="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/zhanqi-min"
+            src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/yp/yp-base-min.js?v=20160801.01"></script>
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AnyTv</a>
+            <a class="navbar-brand" >&nbsp;&nbsp;&nbsp;{{cate}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+{#                <li class="active"><a>{{cate}}</a></li>#}
+                <!--<li><a href="#about">About</a></li>-->
+                <!--<li><a href="#contact">Contact</a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">平台分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/douyu">斗鱼</a></li>
+                        <li><a href="/panda">熊猫</a></li>
+                        <li><a href="huya">虎牙</a></li>
+                        <li><a href="/quanming">全民</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">直播分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">全部直播</a></li>
+                        <li><a href="/lol">英雄联盟</a></li>
+                        <li><a href="/overwatch">守望先锋</a></li>
+                        <li><a href="#">炉石传说</a></li>
+                        <li><a href="/hwzb">户外直播</a></li>
+                </li>
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--&lt;!&ndash;<li><a href="../navbar/">Default</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="../navbar-static-top/">Static top</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="active"><a href="./">顶部<span class="sr-only">(current)</span></a></li>&ndash;&gt;-->
+            <!--</ul>-->
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!--<div class="container">-->
+
+<!--&lt;!&ndash; Main component for a primary marketing message or call to action &ndash;&gt;-->
+<!--<div class="jumbotron">-->
+<!--<h1>Navbar example</h1>-->
+<!--<p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>-->
+<!--<p>To see the difference between static and fixed top navbars, just scroll.</p>-->
+<!--<p>-->
+<!--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
+<!--</p>-->
+<!--</div>-->
+
+<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+<link rel="stylesheet" type="text/css"
+      href="http://dlstatic.cdn.zhanqi.tv/assets/web/static/c/live-list.css?v=20160801.01">
+<script type="text/javascript"
+        src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/public/leftSideAndData.js?v=20160801.0101"></script>
+<div class="live-list-page">
+    <div class="clearfix">
+        <div class="list-title pr">全部直播
+        </div>
+        <div class="live-list-tabc">
+            <ul id="hotList" data-width="307" class="clearfix">
+
+                <!--UT(MD5):b917a35427d9d1709631333c39897d9d-->
+
+                <!--UT(1):Service\Rooms::hots@1-->
+
+                <!--UT(call):Service\Rooms::hots@1-->
+
+                <!--UT(set):Service\Rooms::hots@1-->
+                {% for d in db%}
+                <li>
+                    <a href="{{d.url}}" class="js-jump-link" target="_blank">
+                        <div class="imgBox">
+                            <i class="sub-mask"></i>
+                            <i class="play-icon"></i>
+                            <img src="{{d.img_url}}"
+                                 alt="{{d.title}}"/>
+                        </div>
+                        <div class="info-area">
+                            <span class="name">{{d.title}}</span>
+
+                            <div class="meat">
+                                <span class="views">
+                  <i class="icon-eye dv"></i>
+                  <span class="dv">{{d.person_num}}</span>
+                </span>
+                                <span class="anchor anchor-to-cut dv">{{d.data_from}}-{{d.anchor}}</span>
+                                <span class="game-name dv">{{d.cate}}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+
+            </ul>
+            <div class=pagination >
+            {% if pagination.has_prev %}
+            <a href="{{ url }}?page={{ pagination.prev_num }}" class="btn btn-info btn-sm">上一页</a>
+            {% endif %}
+            {% for page in pagination.iter_pages() %}
+            {% if page %}
+            {% if page != pagination.page %}
+            <a href="{{ url }}?page={{page}}" class="btn btn-info btn-sm">{{ page }}</a>
+            {% else %}
+            <a href="{{ url }}?page={{page}}" class="btn btn-info btn-sm" disabled="disabled">{{ page }}</a>
+            {% endif %}
+            {% else %}
+            <span class=ellipsis>…</span>
+            {% endif %}
+            {% endfor %}
+            {% if pagination.has_next %}
+            <a href="{{ url }}?page={{ pagination.next_num }}" class="btn btn-info btn-sm">下一页</a>
+            {% endif %}
+        </div>
+            <div class="list-loading hidden"><i class="loading"></i></div>
+        </div>
+    </div>
+</div>
+<script src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/lib/jquery.videoHover.js?v=20160801.0101"></script>
+<script type="text/javascript"
+        src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/yp/yp-socket.js?v=20160801.01"></script>
+<script src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/web3.0/roomlist.js?v=20160801.0102"></script>
+<script>
+    var topHost = document.referrer;
+    if (topHost != null && topHost.indexOf('hanyutai.com') >= 0) {
+        top.location = 'http://www.zhanqi.tv';
+    }
+    if (topHost != null && topHost.indexOf('5913.net') >= 0) {
+        $('body').html('<h1 style="padding-top: 200px;text-align: center;font-size:18px;">您可能是盗版软件的受害者<br />更多精彩，更多正版，欢迎进入战旗TV&nbsp;<a style="color:#0372cf;text-decoration: underline;" href="http://www.zhanqi.tv" target="_blank">http://www.zhanqi.tv</a></h1>');
+        $.ajax = function () {
+        };
+    }
+
+    var _hmt = _hmt || [];
+    (function () {
+        if ((window.location.pathname == '/external/cloudIntenet') || (window.location.pathname == '/external/cloudIntenet/baibian')) {
+            var src = "//hm.baidu.com/hm.js?571a375a2453a30dfb75e7abc6b17ae9";
+        } else {
+            var src = window != window.parent ? "//hm.baidu.com/hm.js?606469546101f47ff88f66c83792f4d3" : "//hm.baidu.com/hm.js?299cfc89fdba155674e083d478408f29";
+        }
+        var hm = document.createElement("script");
+        hm.src = src;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+    // var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.setAttribute('id', 'bf_script_analytics_id');
+        hm.src = "//analytics.bfun.cn/analytics.js?_k=5&_v=1.2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    window.ykarClick = function () {
+    };
+    (function () {
+        var hm = document.createElement("script");
+        hm.setAttribute('id', 'bf_script_ads_id');
+        hm.src = "http://we.dobest.com/common/js/ykar/ykar.js?v=20160719";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!--Placed at the end of the document so the pages load faster -->
+<!--<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+</body>
+</html>
