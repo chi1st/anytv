@@ -42,6 +42,13 @@ def overwatch():
     return render_template('TV.html', url='/overwatch', db=posts, cate=cate, pagination=pagination)
 
 
+@app.route('/hearthstone')
+def hearthstone():
+    cate = '炉石传说'
+    posts, pagination = get_pagination(cate)
+    return render_template('TV.html', url='/hearthstone', db=posts, cate=cate, pagination=pagination)
+
+
 @app.route('/hwzb')
 def hwzb():
     cate = '户外直播'

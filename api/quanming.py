@@ -7,7 +7,7 @@ from api import proxy_list
 
 def get_data(url):
     global proxy_list
-    proxies = random.choice(proxy_list) # 随机获取代理ip
+    proxies = random.choice(proxy_list)# 随机获取代理ip
     wb_data = requests.get(url, proxies=proxies)
     j = wb_data.text
     # print('j', j)
@@ -69,7 +69,7 @@ def get_all_quanming_data(cate):
                 break
 
 
-#
-if __name__ == "__main__":
-    get_all_quanming_data(quanming_cate)
+
+# if __name__ == "__main__":
+#     get_all_quanming_data(quanming_cate)
 
