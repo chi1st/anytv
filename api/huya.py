@@ -16,7 +16,7 @@ def get_data(url):
     # print(ej)
     # print(type(ej))
     # for i in ej['data']:
-    #     print(i.items)
+    # print(i.items)
     a = ej['data']['list']
     # print(a)
     # print(type(a))

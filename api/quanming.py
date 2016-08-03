@@ -1,14 +1,13 @@
 import requests
 import json
-# import pymongo
+import random
 from api import anytv_info
-# con = pymongo.MongoClient('localhost', 27017)
-# anytv = con['anytv']
-# anytv_info = anytv['anytv_info']
 
 
 def get_data(url):
-    wb_data = requests.get(url)
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get(url, proxies=proxies)
     j = wb_data.text
     # print('j', j)
     # print(type(j))

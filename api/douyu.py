@@ -1,32 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
+import random
 from api import anytv_info
-
-# con = pymongo.MongoClient('localhost', 27017)
-# anytv = con['anytv']
-# anytv_info = anytv['anytv_info']
+from api import proxy_list
 
 
-# proxies = random.choice(proxy_list) # 随机获取代理ip
-# http://www.douyu.com/directory/game/LOL?page=1&isAjax=1
-# http://www.douyu.com/directory/game/LOL?page=2&isAjax=1
-# http://www.douyu.com/directory/game/LOL?page=9&isAjax=1
-# resp = requests.get("http://tor1024.com/static/proxy_pool.txt")
-# ips_txt = resp.text.strip().split("\n")
-# proxy_list = []
-# for i in ips_txt:
-#     try:
-#         k = json.loads(i)
-#         proxy_list.append(k)
-#     except Exception as e:
-#         print(e)
 def get_url(page, cate):
     url = 'http://www.douyu.com/directory/game/{cate}?page={page}'.format(page=page, cate=cate)
     return url
 
 
 def get_data(url, name_list):
-    wb_data = requests.get(url)
+    global proxy_list
+    proxies = random.choice(proxy_list)  # 随机获取代理ip
+    wb_data = requests.get(url, proxies=proxies)
     soup = BeautifulSoup(wb_data.text, 'lxml')
 
     # print(soup)
@@ -108,17 +95,17 @@ def get_all_douyu_data(cate):
             if a['success'] == '页面重复':
                 break
 
-# if __name__ == '__main__':
-#     get_all_douyu_data(douyu_cate)
-    # for c in cate:
-    #     name_list = []
-    #     page = 1
-    #     while True:
-    #         cate = c
-    #         url = get_url(page, cate)
-    #         page += 1
-    #         print(url)
-    #         a = get_data(url, name_list)
-    #         # get_data(url, name_list)
-    #         if a['success'] == '页面重复':
-    #             break
+            # if __name__ == '__main__':
+            #     get_all_douyu_data(douyu_cate)
+            # for c in cate:
+            #     name_list = []
+            #     page = 1
+            #     while True:
+            #         cate = c
+            #         url = get_url(page, cate)
+            #         page += 1
+            #         print(url)
+            #         a = get_data(url, name_list)
+            #         # get_data(url, name_list)
+            #         if a['success'] == '页面重复':
+            #             break

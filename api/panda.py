@@ -1,7 +1,7 @@
-from bs4 import BeautifulSoup
 import requests
 import json
-# import pymongo
+import random
+from api import proxy_list
 from api import anytv_info
 # from model_sqlite import ItemInfo
 
@@ -11,7 +11,9 @@ from api import anytv_info
 #
 
 def get_data(url):
-    wb_data = requests.get(url)
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get(url, proxies=proxies)
     j = wb_data.text
     # print(type(j))
     # print(j)
