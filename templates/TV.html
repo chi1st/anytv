@@ -133,11 +133,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">AnyTv</a>
-            <a class="navbar-brand" >&nbsp;&nbsp;&nbsp;{{cate}}</a>
+            <a class="navbar-brand">&nbsp;&nbsp;&nbsp;{{ cate }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-{#                <li class="active"><a>{{cate}}</a></li>#}
+                {#                <li class="active"><a>{{cate}}</a></li>#}
                 <!--<li><a href="#about">About</a></li>-->
                 <!--<li><a href="#contact">Contact</a></li>-->
                 <li class="dropdown">
@@ -159,13 +159,19 @@
                         <li><a href="/overwatch">守望先锋</a></li>
                         <li><a href="hearthstone">炉石传说</a></li>
                         <li><a href="/hwzb">户外直播</a></li>
+                     </ul>
                 </li>
             </ul>
             <!--<ul class="nav navbar-nav navbar-right">-->
-                <!--&lt;!&ndash;<li><a href="../navbar/">Default</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="../navbar-static-top/">Static top</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li class="active"><a href="./">顶部<span class="sr-only">(current)</span></a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="../navbar/">Default</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="../navbar-static-top/">Static top</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="active"><a href="./">顶部<span class="sr-only">(current)</span></a></li>&ndash;&gt;-->
             <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+{#            <li><a href="../navbar/">Default</a></li>#}
+{#            <li><a href="../navbar-static-top/">Static top</a></li>#}
+{#            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>#}
+          </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
@@ -194,63 +200,57 @@
         </div>
         <div class="live-list-tabc">
             <ul id="hotList" data-width="307" class="clearfix">
+                {% for d in db %}
+                    <li>
+                        <a href="{{ d.url }}" class="js-jump-link" target="_blank">
+                            <div class="imgBox">
+                                <i class="sub-mask"></i>
+                                <i class="play-icon"></i>
+                                <img src="{{ d.img_url }}"
+                                     alt="{{ d.title }}"/>
+                            </div>
+                            <div class="info-area">
+                                <span class="name">{{ d.title }}</span>
 
-                <!--UT(MD5):b917a35427d9d1709631333c39897d9d-->
-
-                <!--UT(1):Service\Rooms::hots@1-->
-
-                <!--UT(call):Service\Rooms::hots@1-->
-
-                <!--UT(set):Service\Rooms::hots@1-->
-                {% for d in db%}
-                <li>
-                    <a href="{{d.url}}" class="js-jump-link" target="_blank">
-                        <div class="imgBox">
-                            <i class="sub-mask"></i>
-                            <i class="play-icon"></i>
-                            <img src="{{d.img_url}}"
-                                 alt="{{d.title}}"/>
-                        </div>
-                        <div class="info-area">
-                            <span class="name">{{d.title}}</span>
-
-                            <div class="meat">
+                                <div class="meat">
                                 <span class="views">
                   <i class="icon-eye dv"></i>
-                  <span class="dv">{{d.person_num}}</span>
+                  <span class="dv">{{ d.person_num }}</span>
                 </span>
-                                <span class="anchor anchor-to-cut dv">{{d.data_from}}-{{d.anchor}}</span>
-                                <span class="game-name dv">{{d.cate}}</span>
+                                    <span class="anchor anchor-to-cut dv">{{ d.data_from }}-{{ d.anchor }}</span>
+                                    <span class="game-name dv">{{ d.cate }}</span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 {% endfor %}
-
             </ul>
-            <div class=pagination >
-            {% if pagination.has_prev %}
-            <a href="{{ url }}?page={{ pagination.prev_num }}" class="btn btn-info btn-sm">上一页</a>
-            {% endif %}
-            {% for page in pagination.iter_pages() %}
-            {% if page %}
-            {% if page != pagination.page %}
-            <a href="{{ url }}?page={{page}}" class="btn btn-info btn-sm">{{ page }}</a>
-            {% else %}
-            <a href="{{ url }}?page={{page}}" class="btn btn-info btn-sm" disabled="disabled">{{ page }}</a>
-            {% endif %}
-            {% else %}
-            <span class=ellipsis>…</span>
-            {% endif %}
-            {% endfor %}
-            {% if pagination.has_next %}
-            <a href="{{ url }}?page={{ pagination.next_num }}" class="btn btn-info btn-sm">下一页</a>
-            {% endif %}
-        </div>
+    </button>
+            </div>
+            <div class=pagination>
+                {% if pagination.has_prev %}
+                    <a href="{{ url }}?page={{ pagination.prev_num }}" class="btn-default ">上一页</a>
+                {% endif %}
+                {% for page in pagination.iter_pages() %}
+                    {% if page %}
+                        {% if page != pagination.page %}
+                            <a href="{{ url }}?page={{ page }}" class="btn btn-default">{{ page }}</a>
+                        {% else %}
+                            <a href="{{ url }}?page={{ page }}" class="btn btn-default"
+                               disabled="disabled">{{ page }}</a>
+                        {% endif %}
+                    {% else %}
+                        <span class=ellipsis>…</span>
+                    {% endif %}
+                {% endfor %}
+                {% if pagination.has_next %}
+                    <a href="{{ url }}?page={{ pagination.next_num }}" class="btn btn-default">下一页</a>
+                {% endif %}
+            </div>
             <div class="list-loading hidden"><i class="loading"></i></div>
-        </div>
     </div>
 </div>
+<script src="/static/js/floatButton.js"></script>
 <script src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/lib/jquery.videoHover.js?v=20160801.0101"></script>
 <script type="text/javascript"
         src="http://dlstatic.cdn.zhanqi.tv/assets/web/static/j/yp/yp-socket.js?v=20160801.01"></script>
@@ -296,6 +296,21 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
+</script>
+<script src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script>
+    var request = {
+        url: '/data',
+        type: 'get',
+        success: function (return_data) {
+            var r = return_data;
+            console.log(r);
+            //$('#id-login_p-info').text(r);
+            //$(window.location.href = URL)
+        }
+
+    };
+    $.ajax(request);
 </script>
 
 <!-- Bootstrap core JavaScript
